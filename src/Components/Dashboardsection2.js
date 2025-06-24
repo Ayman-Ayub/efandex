@@ -122,7 +122,7 @@ const Dashboardsection2 = () => {
     </div> 
    
     </div>
-    <div className='flex gap-3 items-center'>
+    <div className='flex gap-3 sm:gap-2 items-center'>
     <div onClick={()=>openteacher()} className='bg-[#fff] border-2 border-[#D0D5DD] rounded-[8px] cursor-pointer justify-center items-center flex flex-row gap-3  h-[45px] w-[118px]'>
     
 <h1 className='text-[#000] font-["Gilroy"] text-sm font-semibold'>Today</h1>

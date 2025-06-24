@@ -21,7 +21,7 @@ function App() {
     <div className="w-fit">
     <SideBarLayout /></div>
     {/* <Container> */}
-    <div className="w-full">
+    <div className="w-full sm:w-[90%]">
       <Routes>
       {/* <Route element={<SideBarLayout />}> */}
       <Route exact path="/" element={<Dashboard/>} />
