@@ -34,7 +34,7 @@ const Dashboardsection1 = () => {
  {dataobject.map((val, ind) => (
               <div
                  key={ind}
-                className=" flex flex-row rounded-lg bg-[#fff]  w-[346px] h-[178px] md:w-full sm:w-full sm:items-center sm:justify-center   shadow-md  "
+                className=" flex flex-row rounded-lg bg-[#fff]  w-[346px] h-[178px] xl:w-full md:w-full sm:w-full sm:items-center sm:justify-center   shadow-md  "
               >
                  <div className='w-[346px] px-4'>
                  
