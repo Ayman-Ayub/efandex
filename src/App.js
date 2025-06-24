@@ -17,7 +17,7 @@ const SideBarLayout = () => {
 
 function App() {
   return (
-     <div className="flex flex-row  ">
+     <div className="flex flex-row  sm:w-full">
     <div className="w-fit">
     <SideBarLayout /></div>
     {/* <Container> */}
