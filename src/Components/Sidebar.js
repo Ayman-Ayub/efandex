@@ -4,11 +4,13 @@ import { NavLink, useLocation } from "react-router-dom";
 export default function Sidebar() {
   const [drop, setdrop] = useState(false);
 const location = useLocation();
+const [showDropdown, setShowDropdown] = useState(false);
 const isDashboardActive = location.pathname === "/" || location.pathname === "/dashboard";
   return (
     <>
-      <div class=" selector  bg-[#FFF] justify-between w-[266px] md:w-fit sm:w-fit lg:w-fit h-screen">
-        <div class=" py-4 flex flex-col   px-3  justify-between ">
+      <div class=" selector sm:fixed  bg-[#FFF] sm:bg-transparent justify-between w-[266px] md:w-fit sm:w-fit lg:w-fit h-screen sm:h-fit">
+       
+        <div class=" py-4 flex flex-col   px-3  justify-between sm:hidden">
           <ul class="space-y-[12.5px]   justify-center ">
             <li onClick={() => setdrop(false)}>
               <NavLink className=" md:hidden  sm:hidden flex items-center text-center justify-center pt-10 gap-2 p-2.5 text-base font-normal text-gray-900 rounded-lg dark:text-white"  >
@@ -205,6 +207,9 @@ const isDashboardActive = location.pathname === "/" || location.pathname === "/d
           </ul>
           
         </div>
+
+
+       
       </div>
     </>
   );

@@ -1,18 +1,22 @@
 import React from 'react'
 import img1 from "../assets/admin.png"
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { ErrorOutlineOutlined, HelpOutlineOutlined, LiveHelpOutlined, LogoutOutlined, Person, PersonOutlineOutlined } from '@mui/icons-material';
 const Header = () => {
-  const [isevent,setisevent]=useState(false);
+  const [drop, setdrop] = useState(false);
   const [profile,setprofile]=useState(false);
-  const [notification,setnotification]=useState(false);
+  
+  const location = useLocation();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const isDashboardActive = location.pathname === "/" || location.pathname === "/dashboard";
+   
   const openprofile = async ()=>{
         setprofile(!profile)
     }
   
   return (
-    <div className="bg-white   px-5 py-3 flex flex-row justify-between md:justify-between">
+    <div className="bg-white sm:px-2  px-5 py-3 flex flex-row justify-between md:justify-between">
     <div className='gap-5 flex md:flex sm:hidden items-center justify-center'>
    <h1 className="text-[#000000] font-poppins text-center text-[41px] font-bold selector hidden md:flex">Efandex</h1>
 
@@ -20,8 +24,25 @@ const Header = () => {
     <div className='flex gap-7 md:justify-end md:items-center  sm:justify-between md:w-full sm:w-full'>
      
       
-       <div className='flex gap-7 '>
-       <div  className=' cursor-pointer p-[6.25px] justify-center items-center text-center'>
+       <div className='flex gap-7 sm:items-center sm:justify-between sm:w-full'>
+         <div className="hidden sm:flex   justify-center items-center" onClick={() => setShowDropdown(!showDropdown)}>
+        {showDropdown ? <svg  xmlns="http://www.w3.org/2000/svg" width="20"
+  height="20" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9.414l2.828-2.829 1.415 1.415L13.414 12l2.829 2.828-1.415 1.415L12 13.414l-2.828 2.829-1.415-1.415L10.586 12 7.757 9.172l1.415-1.415L12 10.586z"/> </g> </svg>
+        :
+          <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="20"
+  height="20"
+  viewBox="0 0 256 256"
+>
+  <rect width="256" height="256" fill="none" />
+  <circle cx="128" cy="64" r="16" fill="#98A2B3"/>
+  <circle cx="128" cy="128" r="16" fill="#98A2B3"/>
+  <circle cx="128" cy="192" r="16" fill="#98A2B3"/>
+</svg>
+}
+        </div>
+       <div  className='sm:hidden cursor-pointer p-[6.25px] justify-center items-center text-center'>
        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
   <path d="M12.0201 2.91C8.71009 2.91 6.02009 5.6 6.02009 8.91V11.8C6.02009 12.41 5.76009 13.34 5.45009 13.86L4.30009 15.77C3.59009 16.95 4.08009 18.26 5.38009 18.7C9.69009 20.14 14.3401 20.14 18.6501 18.7C19.8601 18.3 20.3901 16.87 19.7301 15.77L18.5801 13.86C18.2801 13.34 18.0201 12.41 18.0201 11.8V8.91C18.0201 5.61 15.3201 2.91 12.0201 2.91Z" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
   <path d="M13.8699 3.2C13.5599 3.11 13.2399 3.04 12.9099 3C11.9499 2.88 11.0299 2.95 10.1699 3.2C10.4599 2.46 11.1799 1.94 12.0199 1.94C12.8599 1.94 13.5799 2.46 13.8699 3.2Z" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -40,14 +61,22 @@ const Header = () => {
      <h3 className='text-sm font-normal text-[#081F2C] font-["inter"] leading-5'>USD</h3>
     </div>
        </div>
-
-       <div className='flex gap-2 mx-[14px] w-[68px] h-[40px]  border-[3px] border-[#000000] rounded-full justify-center items-center '>
+       <div className='flex gap-2 sm:items-center sm:justify-end'>
+<div  className='hidden sm:flex cursor-pointer  justify-center items-center text-center'>
+       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
+  <path d="M12.0201 2.91C8.71009 2.91 6.02009 5.6 6.02009 8.91V11.8C6.02009 12.41 5.76009 13.34 5.45009 13.86L4.30009 15.77C3.59009 16.95 4.08009 18.26 5.38009 18.7C9.69009 20.14 14.3401 20.14 18.6501 18.7C19.8601 18.3 20.3901 16.87 19.7301 15.77L18.5801 13.86C18.2801 13.34 18.0201 12.41 18.0201 11.8V8.91C18.0201 5.61 15.3201 2.91 12.0201 2.91Z" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+  <path d="M13.8699 3.2C13.5599 3.11 13.2399 3.04 12.9099 3C11.9499 2.88 11.0299 2.95 10.1699 3.2C10.4599 2.46 11.1799 1.94 12.0199 1.94C12.8599 1.94 13.5799 2.46 13.8699 3.2Z" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15.02 19.06C15.02 20.71 13.67 22.06 12.02 22.06C11.2 22.06 10.44 21.72 9.90002 21.18C9.36002 20.64 9.02002 19.88 9.02002 19.06" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10"/>
+</svg>
+       </div>
+       <div className='flex gap-2 mx-[14px] sm:mx-1 w-[68px] h-[40px]  border-[3px] border-[#000000] rounded-full justify-center items-center '>
        <div onClick={()=>openprofile()} className='rounded-full w-[32px] h-[32px]'>
         <img className="w-[32px] h-[32px] " src={img1}/>
     </div>
         <div className='justify-center item-center cursor-pointer' onClick={()=>openprofile()}><svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
   <path d="M5.00357 5.83332C4.90958 5.83388 4.8164 5.81548 4.72938 5.7792C4.64237 5.74292 4.56322 5.68946 4.49649 5.62188L0.21126 1.24733C0.144319 1.17955 0.0911866 1.09891 0.0549274 1.01006C0.0186682 0.921216 0 0.82592 0 0.729671C0 0.633422 0.0186682 0.538125 0.0549274 0.449279C0.0911866 0.360432 0.144319 0.279793 0.21126 0.212015C0.345075 0.0762205 0.526092 0 0.714775 0C0.903457 0 1.08447 0.0762205 1.21829 0.212015L5.00357 4.07621L8.78171 0.212015C8.91553 0.0762205 9.09654 0 9.28523 0C9.47391 0 9.65493 0.0762205 9.78874 0.212015C9.85568 0.279793 9.90881 0.360432 9.94507 0.449279C9.98133 0.538125 10 0.633422 10 0.729671C10 0.82592 9.98133 0.921216 9.94507 1.01006C9.90881 1.09891 9.85568 1.17955 9.78874 1.24733L5.50351 5.62188C5.37049 5.75658 5.19094 5.83252 5.00357 5.83332Z" fill="#7E8299"/>
 </svg></div>
+       </div>
        </div>
        
        </div>
@@ -170,6 +199,145 @@ const Header = () => {
        
       </div>
       )}
+
+
+        {/* this is for sm screen */}
+              {showDropdown && (
+              <div class=" py-4 sm:flex sm:fixed sm:left-0 sm:top-16 sm:flex-col bg-white  px-3  justify-between hidden">
+                <ul class="space-y-[12.5px]   justify-center ">
+                
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                         isDashboardActive
+                          ? "flex items-center ml-2   selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
+                          : "flex items-center ml-2  selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
+                      }
+                    >
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 21 21" fill="none">
+        <path d="M1 10.6937C1 8.51972 1 7.43272 1.49324 6.5316C1.98648 5.6305 2.8876 5.07123 4.68983 3.95272L6.58983 2.77353C8.49492 1.59118 9.44749 1 10.5 1C11.5525 1 12.5051 1.59118 14.4102 2.77353L16.3102 3.95271C18.1124 5.07123 19.0135 5.6305 19.5068 6.5316C20 7.43272 20 8.51972 20 10.6937V12.1388C20 15.8445 20 17.6975 18.887 18.8487C17.7741 20 15.9826 20 12.4 20H8.6C5.01732 20 3.22599 20 2.11299 18.8487C1 17.6975 1 15.8445 1 12.1388V10.6937Z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M13.2143 16.3809H7.78574" stroke="CurrentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      
+                    </NavLink>
+                  </li>
+      
+                  <li>
+                  <NavLink
+                       to="/e"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center ml-2   selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
+                          : "flex items-center ml-2 selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
+                      }
+                    >
+                   <div className="w-7 h-7">
+                  <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><line x1="16" y1="216" x2="240" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M144,216V40a8,8,0,0,0-8-8H40a8,8,0,0,0-8,8V216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M224,216V104a8,8,0,0,0-8-8H144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><line x1="68" y1="72" x2="96" y2="72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><line x1="80" y1="136" x2="108" y2="136" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><line x1="68" y1="176" x2="96" y2="176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><line x1="180" y1="176" x2="188" y2="176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><line x1="180" y1="136" x2="188" y2="136" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
+      </div>
+      
+                    </NavLink>
+                  </li>
+      
+                 
+                      
+                  <li onClick={() => setdrop(false)}>
+                  <NavLink
+                      to="/a"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center ml-2  selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
+                          : "flex items-center ml-2 selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
+                      }
+                    >
+                      <div className="w-7 h-7">
+                  <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="128" cy="140" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path ewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M70.4,216a64.1,64.1,0,0,1,115.2,0"   stroke-width="24"/><path d="M204.5,116.6A60.1,60.1,0,0,1,244,140" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M167.1,70.2A32,32,0,1,1,204,115" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M52,115A32,32,0,1,1,88.9,70.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M12,140a60.1,60.1,0,0,1,39.5-23.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
+      </div>
+      
+                    </NavLink>
+                  </li>
+                   <li>
+                  <NavLink
+                      to="/b"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center ml-2  selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
+                          : "flex items-center ml-2 selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
+                      }
+                    >
+                   <div className="w-7 h-7">
+                <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M3 7.4V3.6C3 3.26863 3.26863 3 3.6 3H9.4C9.73137 3 10 3.26863 10 3.6V7.4C10 7.73137 9.73137 8 9.4 8H3.6C3.26863 8 3 7.73137 3 7.4Z" stroke="currentColor" stroke-width="1.5"/> <path d="M14 20.4V16.6C14 16.2686 14.2686 16 14.6 16H20.4C20.7314 16 21 16.2686 21 16.6V20.4C21 20.7314 20.7314 21 20.4 21H14.6C14.2686 21 14 20.7314 14 20.4Z" stroke="currentColor" stroke-width="1.5"/> <path d="M14 12.4V3.6C14 3.26863 14.2686 3 14.6 3H20.4C20.7314 3 21 3.26863 21 3.6V12.4C21 12.7314 20.7314 13 20.4 13H14.6C14.2686 13 14 12.7314 14 12.4Z" stroke="currentColor" stroke-width="1.5"/> <path d="M3 20.4V11.6C3 11.2686 3.26863 11 3.6 11H9.4C9.73137 11 10 11.2686 10 11.6V20.4C10 20.7314 9.73137 21 9.4 21H3.6C3.26863 21 3 20.7314 3 20.4Z" stroke="currentColor" stroke-width="1.5"/> </svg>
+                </div>
+               
+                    </NavLink>
+                  </li>
+      
+                   <li>
+                  <NavLink
+                      to="/c"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center ml-2   selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
+                          : "flex items-center ml-2 selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
+                      }
+                    >
+                   <div className="w-7 h-7">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-candle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <rect x="4" y="6" width="4" height="5" rx="1" /> <line x1="6" y1="4" x2="6" y2="6" /> <line x1="6" y1="11" x2="6" y2="20" /> <rect x="10" y="14" width="4" height="5" rx="1" /> <line x1="12" y1="4" x2="12" y2="14" /> <line x1="12" y1="19" x2="12" y2="20" /> <rect x="16" y="5" width="4" height="6" rx="1" /> <line x1="18" y1="4" x2="18" y2="5" /> <line x1="18" y1="11" x2="18" y2="20" /> </svg></div>
+               
+                    </NavLink>
+                  </li>
+      
+                   <li>
+                  <NavLink
+                      to="/d"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center ml-2  selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
+                          : "flex items-center ml-2  selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
+                      }
+                    >
+                   <div className="w-7 h-7">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M2 12c0-.865.11-1.703.316-2.504A3 3 0 0 0 4.99 4.867a9.99 9.99 0 0 1 4.335-2.505 3 3 0 0 0 5.348 0 9.99 9.99 0 0 1 4.335 2.505 3 3 0 0 0 2.675 4.63c.206.8.316 1.638.316 2.503 0 .865-.11 1.703-.316 2.504a3 3 0 0 0-2.675 4.629 9.99 9.99 0 0 1-4.335 2.505 3 3 0 0 0-5.348 0 9.99 9.99 0 0 1-4.335-2.505 3 3 0 0 0-2.675-4.63C2.11 13.704 2 12.866 2 12zm4.804 3c.63 1.091.81 2.346.564 3.524.408.29.842.541 1.297.75A4.993 4.993 0 0 1 12 18c1.26 0 2.438.471 3.335 1.274.455-.209.889-.46 1.297-.75A4.993 4.993 0 0 1 17.196 15a4.993 4.993 0 0 1 2.77-2.25 8.126 8.126 0 0 0 0-1.5A4.993 4.993 0 0 1 17.195 9a4.993 4.993 0 0 1-.564-3.524 7.989 7.989 0 0 0-1.297-.75A4.993 4.993 0 0 1 12 6a4.993 4.993 0 0 1-3.335-1.274 7.99 7.99 0 0 0-1.297.75A4.993 4.993 0 0 1 6.804 9a4.993 4.993 0 0 1-2.77 2.25 8.126 8.126 0 0 0 0 1.5A4.993 4.993 0 0 1 6.805 15zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/> </g> </svg>
+                </div>
+                   
+      
+                    </NavLink>
+                  </li>
+                  <li>
+                  <NavLink
+                      to="/d"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center ml-2   selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
+                          : "flex items-center ml-2 selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
+                      }
+                    >
+                   <div className="w-7 h-7">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,88a32,32,0,0,1,32-32h64a8,8,0,0,1,8,8V192a8,8,0,0,1-8,8H160a32,32,0,0,0-32,32" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/><path d="M24,192a8,8,0,0,0,8,8H96a32,32,0,0,1,32,32V88A32,32,0,0,0,96,56H32a8,8,0,0,0-8,8Z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/></svg>
+                 </div>
+                   
+      
+                    </NavLink>
+                  </li>
+                    <li>
+                  <NavLink
+                      to="/d"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center ml-2 selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#EA4335] "
+                          : "flex items-center ml-2 selector gap-3 px-2.5 py-4 text-[#fff] text-base font-normal  rounded-lg bg-[#EA4335] hover:text-[#ffffff]"
+                      }
+                    >
+                   <div className="w-7 h-7">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" id="IconChangeColor"> <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" id="mainIconPathAttribute"></path> <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" id="mainIconPathAttribute"></path> </svg>
+                 </div>    
+      
+                    </NavLink>
+                  </li>
+                 
+                </ul>
+                </div>
+              )}
     </div>
   )
 }

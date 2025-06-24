@@ -6,7 +6,7 @@ import Dashboardsection3 from '../Components/Dashboardsection3'
 
 const Dashboard = () => {
   return (
-    <div className='w-full '>
+    <div className=''>
       <Header/>
       <Dashboardsection1/>
       <Dashboardsection2/>

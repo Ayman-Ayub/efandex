@@ -17,11 +17,11 @@ const SideBarLayout = () => {
 
 function App() {
   return (
-     <div className="flex flex-row  sm:w-full">
+     <div className="flex flex-row w-full  sm:w-full">
     <div className="w-fit">
     <SideBarLayout /></div>
     {/* <Container> */}
-    <div className="w-full sm:w-[90%]">
+    <div className="w-full">
       <Routes>
       {/* <Route element={<SideBarLayout />}> */}
       <Route exact path="/" element={<Dashboard/>} />
