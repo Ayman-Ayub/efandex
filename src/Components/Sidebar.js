@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-import { NavLink } from "react-router-dom";
-
-import { CreateOutlined, DashboardOutlined, InsertChartOutlinedOutlined, LogoutOutlined, LunchDiningOutlined, PeopleAltOutlined, SettingsOutlined, StorefrontOutlined } from "@mui/icons-material";
+import { NavLink, useLocation } from "react-router-dom";
 export default function Sidebar() {
   const [drop, setdrop] = useState(false);
-
+const location = useLocation();
+const isDashboardActive = location.pathname === "/" || location.pathname === "/dashboard";
   return (
     <>
       <div class=" selector  bg-[#FFF] justify-between w-[266px] md:w-fit sm:w-fit lg:w-fit h-screen">
@@ -32,7 +31,7 @@ export default function Sidebar() {
               <NavLink
                 to="/dashboard"
                 className={({ isActive }) =>
-                  isActive
+                   isDashboardActive
                     ? "flex items-center ml-2   selector gap-3 px-2.5 py-4 text-[#ffffff] text-base font-normal rounded-lg bg-[#000000] "
                     : "flex items-center ml-2  selector gap-3 px-2.5 py-4 text-[#0A1828] text-base font-normal  rounded-lg hover:bg-[#000000] hover:text-[#ffffff]"
                 }
